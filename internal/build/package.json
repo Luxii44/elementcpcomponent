@@ -46,6 +46,6 @@
     "@esbuild-kit/cjs-loader": "^2.2.1",
     "@pnpm/types": "^8.4.0",
     "unbuild": "^1.1.1",
-    "vue": "^3.2.47"
+    "vue": "^3.2.45"
   }
 }
