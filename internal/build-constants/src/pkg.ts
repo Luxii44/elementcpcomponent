@@ -1,0 +1,5 @@
+export const PKG_PREFIX = '@wmcomponent'
+export const PKG_NAME = 'wmcomponent'
+export const PKG_CAMELCASE_NAME = 'WmComponent'
+export const PKG_CAMELCASE_LOCAL_NAME = 'WmComponentLocale'
+export const PKG_BRAND_NAME = 'Wm Component'

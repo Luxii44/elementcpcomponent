@@ -1,0 +1,22 @@
+{
+  "extends": "./tsconfig.base.json",
+  "compilerOptions": {
+    "composite": true,
+    "lib": ["ESNext"],
+    "types": ["node"],
+    "skipLibCheck": true,
+    "module": "ESNext",
+    "moduleResolution": "Node",
+    "allowSyntheticDefaultImports": true
+  },
+  "include": [
+    "internal/**/*",
+    "internal/**/*.json",
+    // "scripts/**/*",
+    // "packages/theme-chalk/*",
+    "packages/wmcomponent/version.ts",
+    "packages/wmcomponent/package.json",
+    "vite.config.ts"
+  ],
+  "exclude": ["**/__tests__/**", "**/tests/**", "**/dist"]
+}

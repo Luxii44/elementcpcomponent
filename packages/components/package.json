@@ -1,0 +1,16 @@
+{
+  "name": "@wmcomponent/components",
+  "version": "0.0.5",
+  "private": false,
+  "license": "MIT",
+  "main": "index.ts",
+  "module": "index.ts",
+  "unpkg": "index.js",
+  "jsdelivr": "index.js",
+  "types": "index.d.ts",
+  "sideEffects": false,
+  "peerDependencies": {
+    "element-plus": "^2.2.29",
+    "vue": "^3.2.0"
+  }
+}

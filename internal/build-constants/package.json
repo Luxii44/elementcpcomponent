@@ -1,0 +1,18 @@
+{
+  "name": "@wmcomponent/build-constants",
+  "version": "0.0.1",
+  "description": "",
+  "main": "./dist/index.cjs",
+  "types": "./dist/index.d.ts",
+  "scripts": {
+    "build": "unbuild",
+    "dev": "pnpm run stub",
+    "stub": "unbuild --stub"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "unbuild": "^0.7.4"
+  }
+}

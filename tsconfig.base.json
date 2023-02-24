@@ -1,0 +1,22 @@
+{
+  "compilerOptions": {
+    "outDir": "dist",// 指定输出目录
+    "target": "es2018",//ESNext | es2018
+    "module": "ESNext",
+    "sourceMap": false,
+    "moduleResolution": "node",
+    "allowJs": false,
+    "strict": true,
+    "noUnusedLocals": true,// 若有未使用的局部变量则抛错
+    "resolveJsonModule": true,
+    "allowSyntheticDefaultImports": true,//允许从没有设置默认导出的模块中默认导入
+    "esModuleInterop": true,
+    "removeComments": false,//删除所有注释，除了以 /!*开头的版权信息
+    "rootDir": ".",// 指定输出文件目录(用于输出)，用于控制输出目录结构
+    "types": [],
+    "baseUrl": ".",
+    "paths": {
+      "@wmcomponent/*": ["packages/*"]
+    }
+  }
+}
