@@ -38,12 +38,12 @@ export const copyTypesDefinitions: TaskFunction = (done) => {
   return parallel(copyTypes('esm'), copyTypes('cjs'))(done)
 }
 export default series(
-  // withTaskName("clean", () => run('pnpm run clean')),//clean是babeljs的函数
-  // withTaskName('createOutput', () => mkdir(epOutput, { recursive: true })),//createOutput是rollupjs的函数
+  withTaskName("clean", () => run('pnpm run clean')),//clean是babeljs的函数
+  withTaskName('createOutput', () => mkdir(epOutput, { recursive: true })),//createOutput是rollupjs的函数
 
   parallel(
-  //   runTask('buildModules'),
-  //   runTask('buildFullBundle'),
+    runTask('buildModules'),
+    runTask('buildFullBundle'),
     runTask('generateTypesDefinitions'),
     // runTask('buildHelper'),
   //   series(
@@ -54,7 +54,7 @@ export default series(
   //   )
   ),
 
-  // parallel(copyTypesDefinitions, copyFiles)
+  parallel(copyTypesDefinitions, copyFiles)
 )
 
 export * from "./src"

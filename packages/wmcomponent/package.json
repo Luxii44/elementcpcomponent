@@ -1,5 +1,5 @@
 {
-  "name": "wmcomponent",
+  "name": "@luxii/wmcomponent",
   "version": "0.0.0-dev.1",
   "description": "A Component Library for Vue 3",
   "keywords": [

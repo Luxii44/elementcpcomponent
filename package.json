@@ -1,8 +1,7 @@
 {
-  "name": "@luxii/wmcomponent",
   "packageManager": "pnpm@7.26.3",
   "private": false,
-  "version": "0.0.3",
+  "version": "0.0.5",
   "type": "module",
   "scripts": {
     "dev": "vite",

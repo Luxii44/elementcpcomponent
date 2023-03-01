@@ -13,7 +13,7 @@
     "esModuleInterop": true,
     "removeComments": false,//删除所有注释，除了以 /!*开头的版权信息
     "rootDir": ".",// 指定输出文件目录(用于输出)，用于控制输出目录结构
-    "types": [],
+    "types": ["element-plus/global"],
     "baseUrl": ".",
     "paths": {
       "@wmcomponent/*": ["packages/*"]

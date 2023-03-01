@@ -4,7 +4,7 @@ import { ElMessage,ElMessageBox } from 'element-plus'
 
 import type { UploadProps, UploadUserFile } from 'element-plus'
 defineOptions({
-  name: 'Upload',
+  name: 'WmUpload',
 })
 const fileList = ref<UploadUserFile[]>([
   {
@@ -44,6 +44,7 @@ const beforeRemove: UploadProps['beforeRemove'] = (uploadFile, uploadFiles) => {
 </script>
 
 <template>
+  <div>12313564</div>
   <el-upload
     v-model:file-list="fileList"
     class="upload-demo"

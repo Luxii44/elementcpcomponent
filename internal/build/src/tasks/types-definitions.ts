@@ -127,7 +127,6 @@ async function addSourceFiles(project: Project) {
             `${path.relative(process.cwd(), file)}.${lang}`,
             content
           )
-          await writeFile("test.txt",content,{flag:"a"})
           sourceFiles.push(sourceFile)
         }
       } else {
@@ -140,9 +139,6 @@ async function addSourceFiles(project: Project) {
       sourceFiles.push(
         project.createSourceFile(path.resolve(pkgRoot, file), content)
       )
-      if (file.indexOf("component.ts") ==0){
-        consola.log(sourceFiles.slice(-1))
-      }
     }),
   ])
   return sourceFiles
