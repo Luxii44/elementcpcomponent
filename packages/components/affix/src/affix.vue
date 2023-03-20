@@ -1,50 +1,69 @@
-<template>
-  <div ref="root">
-    <div >
-      {{scrollTop}}{{ fixed }}
-    </div>
-    <div v-for="(item,index) in affixStyle" :key="index">
-      {{item}}
-    </div>
-  </div>
-</template>
+<script setup lang="ts">
+import { ref } from 'vue'
+import { ElMessage,ElMessageBox } from 'element-plus'
 
-<script lang="ts" setup>
-import { onMounted, ref, shallowRef, watchEffect } from 'vue'
-// import { affixEmits } from './affix'
-
-const COMPONENT_NAME = 'ElAffix'
+import type { UploadProps, UploadUserFile } from 'element-plus'
 defineOptions({
-  name: COMPONENT_NAME,
+  name: 'WmAffix',
 })
+const fileList = ref<UploadUserFile[]>([
+  {
+    name: 'element-plus-logo.svg',
+    url: 'https://element-plus.org/images/element-plus-logo.svg',
+  },
+  {
+    name: 'element-plus-logo2.svg',
+    url: 'https://element-plus.org/images/element-plus-logo.svg',
+  },
+])
 
-// const emit = defineEmits(affixEmits)
-
-const root = shallowRef<HTMLDivElement>()
-const scrollContainer = shallowRef<HTMLElement | Window>()
-const fixed = ref(false)
-const scrollTop = ref(0)
-
-const affixStyle = <any[]>[1,2,3]
-
-const update = () => {
-  if (!scrollContainer.value) return
-
-  scrollTop.value =
-    scrollContainer.value instanceof Window
-      ? document.documentElement.scrollTop
-      : scrollContainer.value.scrollTop || 0
+const handleRemove: UploadProps['onRemove'] = (file, uploadFiles) => {
+  console.log(file, uploadFiles)
 }
 
-// watch(fixed, (val) => emit('change', val))
+const handlePreview: UploadProps['onPreview'] = (uploadFile) => {
+  console.log(uploadFile)
+}
 
-onMounted(() => {
-})
+const handleExceed: UploadProps['onExceed'] = (files, uploadFiles) => {
+  ElMessage.warning(
+    `The limit is 3, you selected ${files.length} files this time, add up to ${
+      files.length + uploadFiles.length
+    } totally`
+  )
+}
 
-watchEffect(update)
-
-defineExpose({
-  /** @description update affix status */
-  update,
-})
+const beforeRemove: UploadProps['beforeRemove'] = (uploadFile, uploadFiles) => {
+  return ElMessageBox.confirm(
+    `Cancel the transfert of ${uploadFile.name} ?`
+  ).then(
+    () => true,
+    () => false
+  )
+}
 </script>
+
+<template>
+  <div>12313564</div>
+  <el-upload
+    v-model:file-list="fileList"
+    class="upload-demo"
+    action="https://run.mocky.io/v3/9d059bf9-4660-45f2-925d-ce80ad6c4d15"
+    multiple
+    :on-preview="handlePreview"
+    :on-remove="handleRemove"
+    :before-remove="beforeRemove"
+    :limit="3"
+    :on-exceed="handleExceed"
+  >
+    <el-button type="primary">Click to upload</el-button>
+    <template #tip>
+      <div class="el-upload__tip">
+        jpg/png files with a size less than 500KB.
+      </div>
+    </template>
+  </el-upload>
+</template>
+
+<style scoped>
+</style>
