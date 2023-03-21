@@ -1,26 +1,16 @@
 <script setup lang="ts">
 import { ref,watch } from 'vue'
-// import {conf} from '@wmcomponent/utils'
+// import * as bConf from '@wmcomponent/utils'
 import * as extend from './upload'
 import {ElNotification} from "element-plus"
+import { Plus } from '@element-plus/icons-vue'
 
 defineOptions({
   name: 'WmUpload',
 })
 
-const FileList = ref<any[]>([
-  {
-    name: 'element-plus-logo.svg',
-    url: 'https://element-plus.org/images/element-plus-logo.svg',
-    isPicture:false
-  },
-  {
-    name: 'element-plus-logo2.svg',
-    url: 'https://element-plus.org/images/element-plus-logo.svg',
-    isPicture:true
-  },
-])
-const emits = defineEmits(['update:fileList'])
+const FileList = ref<any[]>([])
+const emits = defineEmits(['update:fileList','show_pic'])
 const props=defineProps({
     readonly:{
         type:Boolean,
@@ -50,7 +40,6 @@ const props=defineProps({
     },
 })
 watch(()=>props.fileList,(newVal)=>{
-    console.log(props.fileList)
     if (props.fileList.length>0){
         FileList.value=newVal
         FileList.value.map((item:any)=>{
@@ -61,9 +50,10 @@ watch(()=>props.fileList,(newVal)=>{
     }
 })
 watch(FileList, (count, prevCount) => {
+    console.log(111)
     emits('update:fileList', FileList.value);
 });
-let baseurl=ref("http://106.52.168.23:1205")
+let baseurl=ref("http://192.168.1.117:8001")
 /*
 fileList的文件对象定义
   name——文件名称
@@ -71,7 +61,6 @@ fileList的文件对象定义
   icon——文件类型的图标
 */
 var uploadeDocSuccess = (response: any) => {
-  console.log(props)
   if (response.Data.errMessage != undefined || !response.IsPositive) {
       ElNotification({
           title: '文档上传',
@@ -92,7 +81,7 @@ var uploadeDocSuccess = (response: any) => {
 const showFile=(val:any)=>{
   //打开文件或者照片
   if (val.isPicture){
-      // utils.mymitt.emit('show_pic',val.name)
+    emits('show_pic',val.name)
   }
   else {
       window.open(val.name)
@@ -104,14 +93,10 @@ const deleteFile=(index:number)=>{
 </script>
 
 <template>
-  <template>
-    <div class="upload-box" >
+    <div class="upload-box">
         <div v-show="!readonly" style="margin:0 10px;">
             <el-upload class="avatar-uploader" :action="UploadUrl" :show-file-list="false" :on-success="uploadeDocSuccess" :headers="UploadHeader" :data="UploadData">
                 <el-icon class="avatar-uploader-icon"><Plus /></el-icon>
-                <!-- <div class="upload-info">
-                    <p class="upload-plus" style="width:100px;height:100px;">+</p>
-                </div> -->
             </el-upload>
         </div>
         <div style="width:clac(100% - 120px);height: 100%;overflow-y: hidden;overflow-x: auto;white-space: nowrap;">
@@ -137,7 +122,3 @@ const deleteFile=(index:number)=>{
         </div>
     </div>
 </template>
-</template>
-
-<style scoped>
-</style>

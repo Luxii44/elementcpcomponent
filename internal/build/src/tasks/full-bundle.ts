@@ -3,20 +3,20 @@ import { nodeResolve } from '@rollup/plugin-node-resolve'
 import { rollup } from 'rollup'
 import commonjs from '@rollup/plugin-commonjs'
 import vue from '@vitejs/plugin-vue'
-import VueMacros from 'unplugin-vue-macros'
+import VueMacros from 'unplugin-vue-macros/rollup'
 import vueJsx from '@vitejs/plugin-vue-jsx'
 import esbuild, { minify as minifyPlugin } from 'rollup-plugin-esbuild'
 import { parallel } from 'gulp'
-import glob from 'fast-glob'
+// import glob from 'fast-glob'
 // import { camelCase, upperFirst } from 'lodash'
 import {
   PKG_BRAND_NAME,
-  PKG_CAMELCASE_LOCAL_NAME,
+  // PKG_CAMELCASE_LOCAL_NAME,
   PKG_CAMELCASE_NAME,
 } from '@wmcomponent/build-constants'
 import { epOutput, epRoot/*, localeRoot*/ } from '@wmcomponent/build-utils'
 import { version } from '../../../../packages/wmcomponent/version'
-// import { ElementPlusAlias } from '../plugins/element-plus-alias'
+import { WmComponentAlias } from '../plugins/wmcomponent-alias'
 import {
   formatBundleFilename,
   generateExternal,
@@ -32,8 +32,8 @@ const banner = `/*! ${PKG_BRAND_NAME} v${version} */\n`
 
 async function buildFullEntry(minify: boolean) {
   const plugins: Plugin[] = [
-    // ElementPlusAlias(),
-    VueMacros.rollup({
+    WmComponentAlias(),
+    VueMacros({
       setupComponent: false,
       setupSFC: false,
       plugins: {

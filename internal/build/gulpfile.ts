@@ -37,6 +37,13 @@ export const copyTypesDefinitions: TaskFunction = (done) => {
 
   return parallel(copyTypes('esm'), copyTypes('cjs'))(done)
 }
+export const copyFullStyle = async () => {
+  await mkdir(path.resolve(epOutput, 'dist'), { recursive: true })
+  await copyFile(
+    path.resolve(epOutput, 'main-style/index.css'),
+    path.resolve(epOutput, 'dist/index.css')
+  )
+}
 export default series(
   withTaskName("clean", () => run('pnpm run clean')),//clean是babeljs的函数
   withTaskName('createOutput', () => mkdir(epOutput, { recursive: true })),//createOutput是rollupjs的函数
@@ -46,12 +53,12 @@ export default series(
     runTask('buildFullBundle'),
     runTask('generateTypesDefinitions'),
     // runTask('buildHelper'),
-  //   series(
-  //     withTaskName('buildThemeChalk', () =>
-  //       run('pnpm run -C packages/theme-chalk build')
-  //     ),
-  //     copyFullStyle
-  //   )
+    series(
+      withTaskName('buildThemeChalk', () =>
+        run('pnpm run -C packages/main-style build')
+      ),
+      copyFullStyle
+    )
   ),
 
   parallel(copyTypesDefinitions, copyFiles)

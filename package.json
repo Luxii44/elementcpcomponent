@@ -17,6 +17,7 @@
     "stub": "pnpm run -r --parallel stub"
   },
   "dependencies": {
+    "@element-plus/icons-vue": "^2.1.0",
     "@wmcomponent/components": "workspace:*",
     "@wmcomponent/constants": "workspace:*",
     "@wmcomponent/utils": "workspace:*"

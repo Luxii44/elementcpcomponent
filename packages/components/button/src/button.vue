@@ -3,7 +3,6 @@ import { ref } from 'vue'
 defineOptions({
   name: 'WmButton',
 })
-const text = ref(12313564)
 // 定义组件类型
 // type ButtonTypes =
 //   | 'default'
@@ -22,7 +21,6 @@ defineExpose({
 </script>
 
 <template>
-  <div>{{ text }}</div>
   <button ref="_ref" :class="['wmbutton', 'wmbutton--']" type="button">
     <slot></slot>
   </button>
