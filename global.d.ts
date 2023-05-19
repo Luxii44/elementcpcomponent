@@ -4,8 +4,8 @@ declare module '@vue/runtime-core' {
     WmUpload: typeof import('@luxii/wmcomponent')
     WmButton: typeof import('@luxii/wmcomponent')
     WmCard: typeof import('@luxii/wmcomponent')
+    WmCropper: typeof import('@luxii/wmcomponent')
   }
-
 }
 
 export {}

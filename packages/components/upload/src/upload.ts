@@ -94,3 +94,32 @@ export const getFileType = (fileName:string):any => { //根据文件名判断文
 	return 'other';
 
 }
+
+
+export const getMIME=async(the_url:string)=> {
+    return (await fetch(the_url).then(r => r.blob())).type
+}
+
+export const checkFileType=(mime:string)=> {
+	if (mime.indexOf("image")>-1){
+		return "image"
+	}
+	if (mime=="application/vnd.openxmlformats-officedocument.wordprocessingml.document"){
+		return "word"
+	}
+}
+// const transBase64FromImage=(url:string)=>{
+// 	var image = new Image();    
+// 	image.src = url + "?" + Math.random();
+// 	image.crossOrigin = '*';
+// 	image.onload = function() {
+// 	  var canvas = document.createElement("canvas");
+// 	  canvas.width = image.width;
+// 	  canvas.height = image.height;
+// 	  var ctx = canvas.getContext("2d");
+// 	  ctx!.drawImage(image, 0, 0, image.width, image.height)
+// 	  var ext = image.src.substring(image.src.lastIndexOf(".") + 1).toLowerCase();
+// 	  var dataURL = canvas.toDataURL("image/" + ext);
+// 	  return dataURL
+// 	}
+// }

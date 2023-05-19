@@ -37,7 +37,7 @@ function buildThemeChalk() {
     .pipe(
       rename((path) => {
         if (!noElPrefixFile.test(path.basename)) {
-          path.basename = `el-${path.basename}`
+          path.basename = `wm-${path.basename}`
         }
       })
     )
@@ -66,7 +66,7 @@ function buildDarkCssVars() {
 }
 
 /**
- * copy from packages/theme-chalk/dist to dist/element-plus/theme-chalk
+ * copy from packages/theme-chalk/dist to dist/elemenelt-plus/theme-chalk
  */
 export function copyThemeChalkBundle() {
   return src(`${distFolder}/**`).pipe(dest(distBundle))

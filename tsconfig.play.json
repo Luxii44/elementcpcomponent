@@ -13,6 +13,5 @@
     "play/main.ts",
     "play/env.d.ts",
     "play/src/**/*",
-    "vue-shim.d.ts",
-    "vue-shim.d.ts"  ]
+    "shims-vue.d.ts" ]
 }

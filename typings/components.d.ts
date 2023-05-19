@@ -7,6 +7,7 @@ declare module '@vue/runtime-core' {
     WmUpload: typeof import('../packages/wmcomponent')['WmUpload']
     WmButton: typeof import('../packages/wmcomponent')['WmButton']
     WmCard: typeof import('../packages/wmcomponent')['WmCard']
+    WmCropper: typeof import('../packages/wmcomponent')['WmCropper']
   }
 
   interface ComponentCustomProperties {

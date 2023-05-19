@@ -10,7 +10,6 @@ import { epRoot, excludeFiles, pkgRoot } from '@wmcomponent/build-utils'
 import { generateExternal, writeBundles } from '../utils'
 // import { ElementPlusAlias } from '../plugins/element-plus-alias'
 import { buildConfigEntries, target } from '../build-info'
-
 import type { OutputOptions } from 'rollup'
 
 export const buildModules = async () => {
