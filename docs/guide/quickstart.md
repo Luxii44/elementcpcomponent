@@ -5,12 +5,12 @@
 ```typescript
 // main.ts
 import { createApp } from 'vue'
-import ElementPlus from 'element-plus'
-import 'element-plus/dist/index.css'
+import WmComponent from ' @luxii/wmcomponent'
+import ' @luxii/wmcomponent/dist/index.css'
 import App from './App.vue'
 
 const app = createApp(App)
 
-app.use(ElementPlus)
+app.use(WmComponent)
 app.mount('#app')
 ```

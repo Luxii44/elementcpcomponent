@@ -1,0 +1,1 @@
+{"version":3,"file":"index.mjs","sources":["../../../../../../packages/components/card/index.ts"],"sourcesContent":["import { withInstall } from '@wmcomponent/utils'\n\nimport Card from './src/card.vue'\n\nexport const WmCard = withInstall(Card)\nexport default WmCard\n\nexport * from './src/card'\n"],"names":[],"mappings":";;;;;AAIa,MAAA,MAAA,GAAS,YAAY,IAAI;;;;"}

@@ -1,4 +1,13 @@
 import {sidebars,nav} from "./baseConfig"
+import MarkdownIt from "markdown-it"
+import mdContainer from 'markdown-it-container'
+import path from 'path'
+import fs from 'fs'
+import { docRoot } from '@wmcomponent/build-utils'
+// import tag from '../plugins/tag'
+import { highlight } from './utils/height'
+
+const localMd = MarkdownIt()
 
 module.exports = {
     title: 'Hello VitePress',
@@ -7,7 +16,7 @@ module.exports = {
     dest: './dist',
     head: [
         // 添加图标
-        ['link', { rel: 'icon', href: '/favicon.ico' }]
+        // ['link', { rel: 'icon', href: '/favicon.ico' }]
     ],
     plugins: [
         '@vuepress/active-header-links',   // 页面滚动时自动激活侧边栏链接的插件
@@ -29,5 +38,41 @@ module.exports = {
         nav,
         // 侧边栏配置
         sidebar:sidebars,
+    },
+    markdown:{
+        config:(md: MarkdownIt) => {
+            md.use(mdContainer, 'demo', {
+                validate(params) {
+                    return params.trim().match(/^demo\s+(.*)$/);
+                },
+            
+                render(tokens, idx) {
+                    var m = tokens[idx].info.trim().match(/^demo\s+(.*)$/);
+                    if (tokens[idx].nesting === 1) {
+                        const description = m && m.length > 1 ? m[1] : ''
+                        const sourceFileToken = tokens[idx + 2]
+                        
+                        let source = ''
+                        const sourceFile = sourceFileToken.children?.[0].content ?? ''
+                
+                        if (sourceFileToken.type === 'inline') {
+                            source = fs.readFileSync(
+                            path.resolve(docRoot, 'examples', `${sourceFile}.vue`),
+                            'utf-8'
+                            )
+                        }
+
+                        return `<Demo :demos="demos" source="${encodeURIComponent(highlight(source, 'vue')
+                        )}" path="${sourceFile}" raw-source="${encodeURIComponent(
+                            source
+                          )}" description="${encodeURIComponent(localMd.render(description))}">`
+                    } else {
+                        // closing tag
+                        return '</Demo>';
+                    }
+                }
+            })
+        }
     }
+    
 }

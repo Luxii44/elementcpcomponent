@@ -26,28 +26,28 @@ function getComponentsSidebar() {
         items: [
         {
             text: 'WmUpload 上传',
-            link: '/components/wmupload'
+            link: 'zh-CN/components/upload'
         },
-        {
-            text: 'Tabs 标签页',
-            link: '/components/tabs'
-        },
-        {
-            text: 'Modal 对话框',
-            link: '/components/modal'
-        },
-        {
-            text: 'Tag 标签',
-            link: '/components/tag'
-        },
-        {
-            text: 'Vue 引用组件',
-            link: '/components/vue'
-        },
-        {
-            text: 'Vue Script',
-            link: '/components/vue-script'
-        }
+        // {
+        //     text: 'Tabs 标签页',
+        //     link: '/components/tabs'
+        // },
+        // {
+        //     text: 'Modal 对话框',
+        //     link: '/components/modal'
+        // },
+        // {
+        //     text: 'Tag 标签',
+        //     link: '/components/tag'
+        // },
+        // {
+        //     text: 'Vue 引用组件',
+        //     link: '/components/vue'
+        // },
+        // {
+        //     text: 'Vue Script',
+        //     link: '/components/vue-script'
+        // }
         ]
     }
     ]
